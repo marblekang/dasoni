@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply bg-gray-300 flex justify-center items-center h-screen m-0 p-0;
+  }
+
+  #__next {
+    @apply flex justify-center items-center w-full h-full;
+  }
+}
