@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# dasoni
 
-## Getting Started
+소중한 사람이 대신 써주는 일기
 
-First, run the development server:
+### Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+사람들은 소중한 사람들과의 관계에서 다음과 같은 어려움을 겪습니다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. 추억의 단편적 기록: 사람들은 종종 특별한 순간을 함께 보내고도 그 경험을 충분히 기록하지 못하거나 시간이 지나면 잊어버리는 경향이 있습니다.
+2. 감정 표현의 어려움: 쑥쓰러움이 많은 사람은 친구, 가족, 연인과 함께한 시간에 대한 감정이나 생각을 직접적으로 표현하기 어려울 수 있습니다.
+3. 관계 강화의 기회 부족: 일상에 쫓겨 서로에 대한 이해와 공감을 깊게 나눌 기회가 부족할 수 있습니다.
+4. 추억 회상의 한계: 시간이 지나면 함께한 순간의 세부적인 감정이나 상황을 정확히 기억하기 어려울 수 있습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+이와 같은 문제를 해결하기 위해 ‘서로에게 일기를 써주는 프로덕트’를 만들게 되었습니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+소중한 이와 즐거운 시간을 보낸 후, 소중한 이가 나를 보는 관점으로 서로에게 일기를 써줌으로써 즐거움과 추억을 쌓을 수 있습니다.
 
-## Learn More
+### Problem
 
-To learn more about Next.js, take a look at the following resources:
+1. 추억의 단편적 기록: 사람들은 종종 특별한 순간을 함께 보내고도 그 경험을 충분히 기록하지 못하거나 시간이 지나면 잊어버리는 경향이 있습니다.
+2. 감정 표현의 어려움: 쑥쓰러움이 많은 사람은 친구, 가족, 연인과 함께한 시간에 대한 감정이나 생각을 직접적으로 표현하기 어려울 수 있습니다.
+3. 관계 강화의 기회 부족: 일상에 쫓겨 서로에 대한 이해와 공감을 깊게 나눌 기회가 부족할 수 있습니다.
+4. 추억 회상의 한계: 시간이 지나면 함께한 순간의 세부적인 감정이나 상황을 정확히 기억하기 어려울 수 있습니다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Objectives
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. 서로 팔로우를 한 두 사람 간에 서로 일기를 전달할 수 있게 한다.
+2. 유저간 상호작용을 통해 서로 간 애정을 표현할 수 있다.
 
-## Deploy on Vercel
+### Constraints
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Roadblocks, realities, and dependencies that limit how ambitious you can be with this project. Whether it’s time, money, or engineering capability, be clear about the limits of this project.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+이 프로젝트에서 얼마나 야심적일 수 있는지 제한하는 장애물, 현실 및 종속성. 시간, 돈 또는 엔지니어링 역량이든 이 프로젝트의 한계에 대해 명확히 하십시오.
+
+1. Constraint 1:
+2. Constraint 2:
+3. Constraint 3:
+
+### Persona
+
+1. Persona 1: 장거리 연애 중인 '수아' (28세, 여성) - 자주 만나지 못하는 만큼 파트너와의 소중한 순간을 기록하고 공유하고 싶어하는 사용자
+2. Persona 2 : 소셜 미디어 중독자 '민지' (25세, 여성) - 일상을 공유하는 것을 좋아하지만, 더 깊은 감정 표현을 원하는 사용자
+3. Persona 3: 사춘기 자녀와 소통하고자 하는 ‘정필’(45세, 남성)
+
+### Use Cases
+
+Instances where various personas will use the product, in context.
+다양한 페르소나가 상황에 맞게 제품을 사용하는 경우를 묘사해주세요.
+
+- Scenario 1: 수아씨는 오랜만에 만난 연인과의 데이트 후, 서로의 관점에서 그날의 일기를 작성합니다. 서로의 마음을 더 잘 이해하게 되고, 떨어져 있을 때도 이 일기들을 통해 그리움을 달랩니다.
+- Scenario 2: 민지씨는 친구들과 여행을 다녀온 후, 각자의 시선에서 그날의 일기를 써서 공유합니다. 서로의 일기를 읽으며 같은 경험에 대한 다른 시각을 이해하고, 더 깊은 유대감을 형성합니다.
+
+### 용어 정리
+
+- 다소니: 사랑하는 사람의 순 우리말. 서로 팔로우를 한 유저 간 관계를 의미한다.
+
+### Features
+
+**계정**
+
+1. (필수) 로그인 기능
+   - 다소니 간의 일기 공유를 위한 기능.
+2. (필수) 상대방의 계정을 팔로우할 수 있다.
+
+**일기**
+
+1. (필수) 화자와 청자를 설정하여 일기를 쓸 수 있다.
+   - 일기를 주고 받는, 제품의 핵심기능
+   - 화자가 본인, 청자가 다소니가 될 수도 있고 그 반대가 될 수도 있다.
+2. (필수) 전달받은 일기에 ‘좋아요’, ‘재미있어요’, ‘삐졌어요’ 반응표시를 누를 수 있다.
+   - 다소니 간의 애정표현을 위한 기능.
+3. (필수) 일기를 조회할 수 있다.
+4. (필수) 일기 작성 시 위치정보를 추가할 수 있다
+5. 사진을 일기에 추가할 수 있다.
+
+**검색**
+
+1. 일기를 검색할 수 있다.
+2. 팔로우할 유저를 검색할 수 있다.
+3. MVP이므로 둘 이상의 유저를 팔로우할 시 ‘아직은 한명의 팔로우만 가능합니다. 라는 메시지를 띄운다.
+
+**기타**
+
+1. 앱 설치 링크를 보낼 수 있다.
