@@ -1,6 +1,8 @@
 "use client";
 import LocationSearch from "@/components/location-search/LocationSearch";
+
 import { Suspense, useEffect, useState } from "react";
+import { Input } from "@/components/ui/input";
 const Home = () => {
   const [searchKeyword, setSearchkeyword] = useState<string>("");
   const [throttledSearchKeyword, setThrottledSearchKeyword] =
@@ -20,8 +22,13 @@ const Home = () => {
   }, [searchKeyword]);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-      <input type="text" value={searchKeyword} onChange={handleInputChange} />
+    <div className="flex flex-col gap-2 p-4">
+      <Input
+        type="text"
+        value={searchKeyword}
+        onChange={handleInputChange}
+        placeholder="위치 검색"
+      />
       <Suspense>
         <LocationSearch searchKeyword={throttledSearchKeyword} />
       </Suspense>

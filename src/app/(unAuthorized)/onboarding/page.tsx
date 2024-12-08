@@ -1,7 +1,9 @@
-export const Onboarding = () => {
+import { LoginButton } from "@/components/auth/login/LoginButton";
+
+const Onboarding = () => {
   return (
-    <div className="w-full flex flex-col items-center p-4 justify-between  h-screen pt-8">
-      <div className="flex flex-col gap-8 pr-[15%] verySmall:pr-0">
+    <div className="w-full flex flex-col items-center p-4 justify-between  h-screen pt-8 bg-white">
+      <div className="flex flex-col gap-8 self-start">
         <div
           className={"font-montserratSubrayada font-bold text-[2rem] leading-9"}
         >
@@ -28,11 +30,7 @@ export const Onboarding = () => {
         </div>
       </div>
       <div className="w-full flex flex-col items-center gap-4 mb-[10vh]">
-        <button className="rounded-[52px] bg-[#E73747] py-4 px-16">
-          <span className={"font-pretendard text-white text-[13px] color"}>
-            1분안에 다소니 가입하기
-          </span>
-        </button>
+        <LoginButton />
         <span className={"font-permanentMarker text-8 text-[2rem]"}>
           <span className="text-[2.4rem]">W</span>E'RE{" "}
           <span className="text-[2.4rem]">S</span>TORY!
@@ -41,3 +39,4 @@ export const Onboarding = () => {
     </div>
   );
 };
+export default Onboarding;

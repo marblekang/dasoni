@@ -1,12 +1,6 @@
-import React from "react";
 import useGeolocation from "./useGeolocation";
-import {
-  useQuery,
-  useQueryClient,
-  keepPreviousData,
-} from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { fetchLocationInfo } from "@/utils/fetchLocationInfo";
-import { LocationDataInfo, LocationReseponseTemplate } from "@/type/location";
 
 export interface LocationSearchProps {
   searchKeyword: string;

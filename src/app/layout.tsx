@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Providers from "@/components/providers";
+import QueryProvider from "@/components/providers/tanstack-query-provider";
 import localFont from "next/font/local";
 
 export const metadata: Metadata = {
@@ -48,14 +48,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` bg-gray-100 text-gray-800 font-sans p-4 ${lemonada.variable} ${montserratSubrayada.variable} ${pretendard.variable} ${permanentMarker.variable}`}
+        className={` bg-gray-100 text-gray-800 flex justify-center ${lemonada.variable} ${montserratSubrayada.variable} ${pretendard.variable} ${permanentMarker.variable}`}
       >
-        <Providers>
-          <div className="min-w-[330px] max-w-[500px] mx-auto bg-white shadow-md min-h-screen">
-            <header className="h-10"></header>
-            <main>{children}</main>
-          </div>
-        </Providers>
+        <QueryProvider>
+          <div className="max-w-[500px] w-full min-h-screen">{children}</div>
+        </QueryProvider>
       </body>
     </html>
   );

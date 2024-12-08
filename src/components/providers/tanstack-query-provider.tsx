@@ -1,8 +1,9 @@
 "use client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
+import { WrapperWithChildren } from "@/type/layout";
 
-const Providers = ({ children }: { children: React.ReactNode }) => {
+const Provider = ({ children }: WrapperWithChildren) => {
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -19,4 +20,4 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default Providers;
+export default Provider;

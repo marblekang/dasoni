@@ -6,7 +6,7 @@ import { useLocationSearch } from "@/hooks/\buseLocationSearch";
 
 const LocationSearch = ({ searchKeyword }: LocationSearchProps) => {
   const { isFetching, locationData } = useLocationSearch({ searchKeyword });
-  console.log(locationData, "locationData");
+
   return (
     <div
       className={"overflow-y-scroll scrollbar-hide "}
