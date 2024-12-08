@@ -32,8 +32,8 @@ const Onboarding = () => {
       <div className="w-full flex flex-col items-center gap-4 mb-[10vh]">
         <LoginButton />
         <span className={"font-permanentMarker text-8 text-[2rem]"}>
-          <span className="text-[2.4rem]">W</span>E'RE{" "}
-          <span className="text-[2.4rem]">S</span>TORY!
+          <span className="text-[2.4rem]">W</span>
+          <span>E&lsquo;RE</span> <span className="text-[2.4rem]">S</span>TORY!
         </span>
       </div>
     </div>

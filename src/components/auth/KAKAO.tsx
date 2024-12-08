@@ -11,14 +11,3 @@ const KAKAO = () => {
 };
 
 export default KAKAO;
-
-import { JWT } from "next-auth/jwt";
-
-const token: JWT = {
-  exp: 112312312,
-  iat: 112312332,
-  id: "123123123",
-  image: "/srckakao.cdn~~",
-  name: "나나나",
-  sub: "123123123", // id와 같음.
-};
