@@ -1,29 +1,32 @@
 "use client";
-import { fetchLocationInfo } from "@/utils/fetchLocationInfo";
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import LocationInfo from "./LocationInfo";
+import { LocationSearchProps } from "@/type/location";
+import { useLocationSearch } from "@/hooks/\buseLocationSearch";
 
-interface Props {
-  searchKeyword: string;
-}
-const LocationSearch = ({ searchKeyword }: Props) => {
-  const { data: locationData, isFetching } = useQuery({
-    queryKey: ["searchKeyword", { searchKeyword }],
-    queryFn: async () => {
-      if (!searchKeyword) return [];
-      const data = await fetchLocationInfo({ searchKeyword });
-      return data.documents;
-    },
-    staleTime: Infinity,
-  });
-  console.log(locationData);
+const LocationSearch = ({ searchKeyword }: LocationSearchProps) => {
+  const { isFetching, locationData } = useLocationSearch({ searchKeyword });
+
   return (
-    <div>
+    <div
+      className={"overflow-y-scroll scrollbar-hide "}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "0.5rem",
+      }}
+    >
       {isFetching && <>검색중...</>}
-      {locationData &&
-        locationData?.map(
-          (val) => `${val.place_name} (${val.road_address_name})`
-        )}
+      {locationData?.map((val) => {
+        return (
+          <LocationInfo
+            distance={val.distance}
+            placeName={val.place_name}
+            roadAddress={val.road_address_name || val.address_name}
+            key={val.id}
+          />
+        );
+      })}
     </div>
   );
 };
