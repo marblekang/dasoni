@@ -10,12 +10,10 @@ export const getRequest = async <T>({
   url,
   headers,
   queryString,
-  cacheOption,
 }: GetRequestParams): Promise<T> => {
   const options: RequestInit = {
     method: "GET",
     headers: { ...commonHeaders, ...headers },
-    cache: cacheOption,
   };
 
   try {

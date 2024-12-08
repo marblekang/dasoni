@@ -1,8 +1,10 @@
 export interface FetchLocationInfoParams {
   searchKeyword: string;
+  x: number | null;
+  y: number | null;
 }
 
-export interface LocationInfo {
+export interface LocationDataInfo {
   address_name: string;
   category_group_code: string;
   category_group_name: string;
@@ -18,5 +20,16 @@ export interface LocationInfo {
 }
 
 export interface LocationReseponseTemplate {
-  documents: LocationInfo[];
+  documents: LocationDataInfo[];
+}
+
+export interface GetDistanceParams {
+  lon1: number;
+  lat1: number;
+  lon2: number;
+  lat2: number;
+}
+
+export interface LocationSearchProps {
+  searchKeyword: string;
 }

@@ -20,7 +20,7 @@ const Home = () => {
   }, [searchKeyword]);
 
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
       <input type="text" value={searchKeyword} onChange={handleInputChange} />
       <Suspense>
         <LocationSearch searchKeyword={throttledSearchKeyword} />

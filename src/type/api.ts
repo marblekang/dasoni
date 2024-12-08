@@ -4,7 +4,6 @@ interface RequestParams {
 }
 export interface GetRequestParams extends RequestParams {
   queryString?: string;
-  cacheOption: RequestCache;
 }
 type MutateMethod = "POST" | "PUT" | "PATCH";
 export interface MutateRequestParams<T> extends RequestParams {
