@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth/next";
 export const getAuthSession = async () => {
   try {
     const session = await getServerSession(authOptions);
-    console.log(session, "session");
     if (session?.user?.id) {
       return session;
     } else {
