@@ -1,10 +1,12 @@
 "use client";
-import { signIn } from "next-auth/react";
+
 import { ButtonWithAuth } from "../ButtonWithAuth";
 
 export const LoginButton = () => {
   const handleKAKAOLogin = () => {
-    signIn("kakao", { callbackUrl: "/" });
+    const serverURI = "";
+    // 서버에 클라이언트 redirect uri 미리 저장.
+    window.location.href = `${serverURI}`;
   };
 
   return (
