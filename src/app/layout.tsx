@@ -13,6 +13,13 @@ const lemonada = localFont({
   display: "swap",
   variable: "--font-lemonada",
 });
+
+const khmer = localFont({
+  src: "../../public/fonts/Khmer400.ttf",
+  weight: "400",
+  variable: "--font-khmer",
+});
+
 const montserratSubrayada = localFont({
   src: [
     {
@@ -48,10 +55,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` bg-gray-100 text-gray-800 flex justify-center ${lemonada.variable} ${montserratSubrayada.variable} ${pretendard.variable} ${permanentMarker.variable}`}
+        className={` bg-gray-100 text-gray-800 flex justify-center ${lemonada.variable} ${montserratSubrayada.variable} ${pretendard.variable} ${permanentMarker.variable} ${khmer.variable}`}
       >
         <QueryProvider>
-          <div className="max-w-[500px] w-full min-h-screen">{children}</div>
+          <div className="max-w-[500px] w-full min-h-screen relatvie">
+            {children}
+          </div>
         </QueryProvider>
       </body>
     </html>

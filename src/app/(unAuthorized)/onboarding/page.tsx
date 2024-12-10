@@ -1,11 +1,16 @@
 import { LoginButton } from "@/components/auth/login/LoginButton";
+import MainNote from "@/components/onboarding/MainNote";
+import Image from "next/image";
 
 const Onboarding = () => {
   return (
-    <div className="w-full flex flex-col items-center p-4 justify-between  h-screen pt-8 bg-white">
-      <div className="flex flex-col gap-8 self-start">
+    <div className="w-full flex flex-col items-center  justify-between  h-screen  bg-[#fcf4f4] z-10 relative">
+      <MainNote />
+      <div className="flex flex-col gap-8 self-start w-full pl-8">
         <div
-          className={"font-montserratSubrayada font-bold text-[2rem] leading-9"}
+          className={
+            "font-montserratSubrayada font-bold text-[2rem] leading-9 w-full"
+          }
         >
           <span>
             소중한 사람이 대신
@@ -19,22 +24,21 @@ const Onboarding = () => {
           >
             DASONI
           </span>
-          <span className={"font-montserratSubrayada font-bold text-[#FFA2AA]"}>
+          <span className={"font-montserratSubrayada font-bold text-[#FF3668]"}>
             사랑하는 사람의 순 우리말
           </span>
         </div>
-        <div className={"font-permanentMarker text-[2rem] flex flex-col gap-5"}>
-          <span>THIS IS</span>
-          <span>ME AND</span>
-          <span>ONLY YOU</span>
-        </div>
+      </div>
+      <div className="w-full flex justify-center">
+        <Image
+          src="/assets/smileIcons.png"
+          width={280}
+          height={97}
+          alt="smile-icons"
+        />
       </div>
       <div className="w-full flex flex-col items-center gap-4 mb-[10vh]">
         <LoginButton />
-        <span className={"font-permanentMarker text-8 text-[2rem]"}>
-          <span className="text-[2.4rem]">W</span>
-          <span>E&lsquo;RE</span> <span className="text-[2.4rem]">S</span>TORY!
-        </span>
       </div>
     </div>
   );

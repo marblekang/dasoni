@@ -1,4 +1,7 @@
 "use client";
+
+import Image from "next/image";
+
 export const ButtonWithAuth = ({
   handleAuth,
   text,
@@ -7,13 +10,18 @@ export const ButtonWithAuth = ({
   text: string;
 }) => {
   return (
-    <button
-      onClick={handleAuth}
-      className="rounded-[52px] bg-[#E73747] py-4 px-16 verySmall:py-2 verySmall:px-8"
-    >
-      <span className={"font-pretendard text-white text-[13px] color"}>
-        {text}
-      </span>
+    <button onClick={handleAuth} className="w-[400px] bg-[#FEE500] rounded-md">
+      <div className="flex justify-between py-4 pl-8 pr-36 verySmall:py-2 verySmall:px-8">
+        <Image
+          alt="kakao-icon"
+          width={18}
+          height={18}
+          src="/assets/Icon/Kakao.png"
+        />
+        <span className={"font-pretendard text-black text-12 color "}>
+          {text}
+        </span>
+      </div>
     </button>
   );
 };

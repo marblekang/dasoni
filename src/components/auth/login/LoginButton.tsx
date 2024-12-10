@@ -9,10 +9,5 @@ export const LoginButton = () => {
     window.location.href = `${serverURI}`;
   };
 
-  return (
-    <ButtonWithAuth
-      handleAuth={handleKAKAOLogin}
-      text="1분안에 다소니 가입하기"
-    />
-  );
+  return <ButtonWithAuth handleAuth={handleKAKAOLogin} text="카카오 로그인" />;
 };
