@@ -2,7 +2,7 @@ import Nav from "@/components/common/nav/Nav";
 import DiaryList from "@/components/diary/DiaryList";
 import UserList from "@/components/user/UserList";
 import { Metadata } from "next";
-import React from "react";
+
 interface PageProps {
   params: { tabType: "user" | "diary" };
   searchParams: { keyword?: string };
@@ -13,16 +13,17 @@ export const metadata: Metadata = {
 };
 
 const Page = ({ params, searchParams }: PageProps) => {
-  const tabType = params?.tabType ?? "user";
+  const { tabType } = params; // 동적 경로 처리
+  const keyword = searchParams?.keyword ?? ""; // 쿼리스트링 처리
 
   return (
     <div className="w-full bg-[#FFFCFD] relative">
       <Nav tabType={tabType} />
       <div>
         {tabType === "diary" ? (
-          <DiaryList keyword={searchParams?.keyword ?? ""} />
+          <DiaryList keyword={keyword} />
         ) : (
-          <UserList keyword={searchParams?.keyword ?? ""} />
+          <UserList keyword={keyword} />
         )}
       </div>
     </div>
