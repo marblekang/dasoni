@@ -3,12 +3,18 @@ import DiaryList from "@/components/diary/DiaryList";
 import UserList from "@/components/user/UserList";
 import { Metadata } from "next";
 
+type TabType = "diary" | "user";
+
 type Props = {
-  params: { tabType: string };
+  params: { tabType: TabType };
   searchParams: { keyword?: string };
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { tabType: TabType };
+}): Promise<Metadata> {
   const tabType = params.tabType;
 
   return {
@@ -22,7 +28,7 @@ const Page = ({ params, searchParams }: Props) => {
 
   return (
     <div className="w-full bg-[#FFFCFD] relative">
-      <Nav tabType={tabType as "user" | "diary"} />
+      <Nav tabType={tabType} />
       <div>
         {tabType === "diary" ? (
           <DiaryList keyword={keyword} />
