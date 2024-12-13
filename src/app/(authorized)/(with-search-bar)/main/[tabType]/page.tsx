@@ -6,8 +6,8 @@ import { Metadata } from "next";
 type TabType = "diary" | "user";
 
 type Props = {
-  params: { tabType: TabType };
-  searchParams: { keyword?: string };
+  params: Promise<{ tabType: TabType }>;
+  searchParams: Promise<{ keyword?: string }>;
 };
 
 export async function generateMetadata({
@@ -22,9 +22,9 @@ export async function generateMetadata({
   };
 }
 
-const Page = ({ params, searchParams }: Props) => {
-  const { tabType } = params;
-  const keyword = searchParams?.keyword ?? "";
+const Page = async ({ params, searchParams }: Props) => {
+  const { tabType } = await params;
+  const keyword = (await searchParams)?.keyword ?? "";
 
   return (
     <div className="w-full bg-[#FFFCFD] relative">
