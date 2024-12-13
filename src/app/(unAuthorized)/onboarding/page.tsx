@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Onboarding = () => {
   return (
-    <div className="w-full flex flex-col items-center  justify-between  h-screen  bg-[#fcf4f4] z-10 relative">
+    <div className="w-full flex flex-col items-center  justify-between  h-full  bg-[linear-gradient(184deg,rgba(153,147,147,0)_-13.43%,rgba(255,240,240,0.3)_-13.43%)] z-10 relative">
       <MainNote />
       <div className="flex flex-col gap-8 self-start w-full pl-8">
         <div
@@ -37,7 +37,7 @@ const Onboarding = () => {
           alt="smile-icons"
         />
       </div>
-      <div className="w-full flex flex-col items-center gap-4 mb-[10vh]">
+      <div className="w-full flex flex-col items-center gap-4 mb-8">
         <LoginButton />
       </div>
     </div>

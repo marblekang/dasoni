@@ -11,6 +11,7 @@ export const useLocationSearch = ({ searchKeyword }: LocationSearchProps) => {
     queryKey: ["searchKeyword", { searchKeyword }],
     queryFn: async () => {
       try {
+        if (!searchKeyword) throw new Error();
         const queryString = error
           ? `query=${searchKeyword}`
           : `query=${searchKeyword}&x=${x}&y=${y}`;

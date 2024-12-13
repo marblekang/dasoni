@@ -6,15 +6,14 @@ interface Props {
 }
 const Layout = ({ children }: Props) => {
   return (
-    <div className="bg-white shadow-md  h-full w-full relative ">
+    <div className="relative">
       <HeaderSearchBar />
-      <main className="pb-10 overflow-y-scroll scrollbar-hide  ">
+      <main
+        className="w-full bg-[#FFFCFD]"
+        style={{ height: "calc(100vh - 4rem)" }}
+      >
         {children}
       </main>
-      {/* footer */}
-      <footer className="h-10 absolute w-full bottom-0 left-0 flex justify-center items-center bg-gray-300">
-        Footer
-      </footer>
     </div>
   );
 };

@@ -9,7 +9,10 @@ interface Props {
 
 const LocationInfo = ({ placeName, roadAddress, distance }: Props) => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div
+      className="hover:bg-gray-200 cursor-pointer"
+      style={{ display: "flex", flexDirection: "column" }}
+    >
       <span style={{ fontSize: "0.9rem" }}>{placeName}</span>
       <div
         style={{

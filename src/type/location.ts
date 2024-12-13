@@ -32,4 +32,6 @@ export interface GetDistanceParams {
 
 export interface LocationSearchProps {
   searchKeyword: string;
+  setLocation: any;
+  setShowLocationSearch: any;
 }

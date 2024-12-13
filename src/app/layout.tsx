@@ -55,10 +55,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={` bg-gray-100 text-gray-800 flex justify-center ${lemonada.variable} ${montserratSubrayada.variable} ${pretendard.variable} ${permanentMarker.variable} ${khmer.variable}`}
+        className={` bg-white text-gray-800 flex justify-center ${lemonada.variable} ${montserratSubrayada.variable} ${pretendard.variable} ${permanentMarker.variable} ${khmer.variable}`}
       >
         <QueryProvider>
-          <div className="max-w-[500px] w-full min-h-screen relatvie">
+          <div className="max-w-[500px]  w-dvw min-h-screen h-dvh relatvie ">
             {children}
           </div>
         </QueryProvider>

@@ -3,7 +3,7 @@ import Image from "next/image";
 const MainNote = () => {
   return (
     <div className="w-full">
-      <div className="bg-white w-[400px] h-[150px] custom-shadow rounded-br-2xl relative flex  items-center">
+      <div className="bg-white w-[70%] h-[15vh] custom-shadow rounded-br-2xl relative flex  items-center">
         <div
           className={
             "font-permanentMarker text-[1.5rem] flex flex-col gap-1 pl-8 pb-4"

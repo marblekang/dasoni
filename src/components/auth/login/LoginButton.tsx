@@ -1,13 +1,20 @@
 "use client";
 
+import { getRequest } from "@/utils/requets";
 import { ButtonWithAuth } from "../ButtonWithAuth";
+import Link from "next/link";
 
 export const LoginButton = () => {
-  const handleKAKAOLogin = () => {
-    const serverURI = "";
-    // 서버에 클라이언트 redirect uri 미리 저장.
-    window.location.href = `${serverURI}`;
+  const handleKAKAOLogin = async () => {
+    const response = await getRequest({
+      url: "api/auth/kakao",
+    });
+    console.log(response, "response");
   };
 
-  return <ButtonWithAuth handleAuth={handleKAKAOLogin} text="카카오 로그인" />;
+  return (
+    <Link href={`api/auth/kakao`}>
+      <ButtonWithAuth handleAuth={handleKAKAOLogin} text="카카오 로그인" />
+    </Link>
+  );
 };

@@ -4,32 +4,45 @@ import {
   MutateRequestParams,
 } from "@/type";
 import { validateQueryString } from "./validateQueryString";
-const commonHeaders: HeadersInit = { "Content-Type": "application/json" };
 
+const commonHeaders: HeadersInit = {
+  "Content-Type": "application/json",
+  credentials: "include",
+};
+
+/**
+ * description - url넣을때 반드시 앞에 '/' 붙여야함
+ * @param param0
+ * @returns
+ */
 export const getRequest = async <T>({
   url,
   headers,
   queryString,
+  needServerIP = true,
 }: GetRequestParams): Promise<T> => {
   const options: RequestInit = {
     method: "GET",
     headers: { ...commonHeaders, ...headers },
   };
-
+  const serverIp = process.env.SERVER_IP ? process.env.SERVER_IP : "";
   try {
     const response = await fetch(
-      `${url}${validateQueryString(queryString)}`,
+      `${serverIp}${url}${validateQueryString(queryString)}`,
       options
     );
 
     if (!response.ok) {
+      if (response.status === 401) {
+        fetch("/auth/refresh");
+      }
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data: T = await response.json();
     return data;
   } catch (error) {
     console.error(error);
-    throw error;
+    return [];
   }
 };
 
@@ -40,7 +53,8 @@ const mutateRequest = async <T>({
   mutateMethod,
 }: MutateRequestParams<T>) => {
   try {
-    const response = await fetch(url, {
+    const serverIp = process.env.SERVER_IP ? process.env.SERVER_IP : "";
+    const response = await fetch(`${serverIp}${url}`, {
       method: mutateMethod,
       headers: {
         ...commonHeaders,
@@ -64,24 +78,27 @@ export const postRequest = async <T>({
   body,
   url,
   headers,
+  mutateMethod = "POST",
 }: MutateRequestParams<T>) => {
-  return mutateRequest({ body, mutateMethod: "POST", url, headers });
+  return mutateRequest({ body, mutateMethod, url, headers });
 };
 
 export const putRequest = async <T>({
   body,
   url,
   headers,
+  mutateMethod = "PUT",
 }: MutateRequestParams<T>) => {
-  return mutateRequest({ body, mutateMethod: "PUT", url, headers });
+  return mutateRequest({ body, mutateMethod, url, headers });
 };
 
 export const patchRequest = async <T>({
   body,
   url,
   headers,
+  mutateMethod = "PATCH",
 }: MutateRequestParams<T>) => {
-  return mutateRequest({ body, mutateMethod: "PATCH", url, headers });
+  return mutateRequest({ body, mutateMethod, url, headers });
 };
 
 export const deleteRequest = async <T>({
