@@ -8,13 +8,19 @@ interface PageProps {
   searchParams: { keyword?: string };
 }
 
-export const metadata: Metadata = {
-  title: "Dynamic Tab Page",
-};
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const tabType = params.tabType;
+
+  return {
+    title: tabType === "diary" ? "일기장" : "사용자 목록",
+  };
+}
 
 const Page = ({ params, searchParams }: PageProps) => {
-  const { tabType } = params; // 동적 경로 처리
-  const keyword = searchParams?.keyword ?? ""; // 쿼리스트링 처리
+  const { tabType } = params;
+  const keyword = searchParams?.keyword ?? "";
 
   return (
     <div className="w-full bg-[#FFFCFD] relative">
