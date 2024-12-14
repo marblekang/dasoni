@@ -15,6 +15,7 @@ const commonHeaders: HeadersInit = {
  * @param param0
  * @returns
  */
+
 export const getRequest = async <T>({
   url,
   headers,
@@ -24,18 +25,21 @@ export const getRequest = async <T>({
     method: "GET",
     headers: { ...commonHeaders, ...headers },
   };
-  const serverIp = process.env.SERVER_IP ? process.env.SERVER_IP : "";
+  let count = 0;
+  const isServer = typeof window === "undefined";
+  const prefixUrl = isServer ? process.env.SERVER_IP : "/api";
+  const endPoint = url.startsWith("/") ? url : `/${url}`;
+  console.log(prefixUrl, "prefixUrl");
+  console.log(`${prefixUrl}${endPoint}`, "asjhdkashjkd");
   try {
     const response = await fetch(
-      `${serverIp}${url}${validateQueryString(queryString)}`,
+      `${prefixUrl}${endPoint}${validateQueryString(queryString)}`,
       options
     );
 
     if (!response.ok) {
       if (response.status === 401) {
-        fetch("/auth/refresh");
       }
-      throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data: T = await response.json();
     return data;
@@ -52,8 +56,11 @@ const mutateRequest = async <T>({
   mutateMethod,
 }: MutateRequestParams<T>) => {
   try {
-    const serverIp = process.env.SERVER_IP ? process.env.SERVER_IP : "";
-    const response = await fetch(`${serverIp}${url}`, {
+    const isServer = typeof window === "undefined";
+    const prefixUrl = isServer ? process.env.SERVER_IP : "/api";
+    const endPoint = url.startsWith("/") ? url : `/${url}`;
+
+    const response = await fetch(`${prefixUrl}${endPoint}`, {
       method: mutateMethod,
       headers: {
         ...commonHeaders,

@@ -1,16 +1,28 @@
 "use client";
 import { HeadlessInput } from "@/components/common/input/HeadlessInput";
+import { getAccessTokenByClient } from "@/utils/getCookieByClient";
+import { patchRequest } from "@/utils/requets";
 import Link from "next/link";
 import { useState } from "react";
 
 const Page = () => {
-  const handleSubmit = async () => {};
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
   };
-  const [nickname, setNickname] = useState<string>("");
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [nickname, setNickname] = useState<string>("");
+  const handleSubmit = async () => {
+    const accessToken = getAccessTokenByClient();
+    const data = await patchRequest({
+      url: "/user/name",
+      body: { name: nickname },
+      headers: { Authorization: accessToken },
+    });
+    if (data) {
+      setIsSuccess(true);
+    }
+  };
+
   return (
     <div className="p-4 pb-16 flex flex-col items-center justify-between h-full bg-[linear-gradient(184deg,rgba(153,147,147,0)_-13.43%,rgba(255,240,240,0.3)_-13.43%)]">
       <div className="w-full flex flex-col mt-20">

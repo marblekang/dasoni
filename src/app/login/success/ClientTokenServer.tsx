@@ -16,7 +16,7 @@ export default function ClientTokenSaver({ token }) {
         console.log("Token stored in server cookie");
       });
       localStorage.setItem("accessToken", token);
-      router.push("/main/diary");
+      router.push("/join/nickname");
     }
   }, [token]);
 

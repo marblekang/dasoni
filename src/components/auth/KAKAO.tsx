@@ -6,7 +6,6 @@ import { LoginButton } from "./login/LoginButton";
 
 const KAKAO = () => {
   const { data: session } = useSession();
-  console.log(session, "session");
   return <>{session ? <LogoutButton /> : <LoginButton />}</>;
 };
 

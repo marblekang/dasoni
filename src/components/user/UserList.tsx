@@ -5,7 +5,6 @@ import { getRequest } from "@/utils/requets";
 import { getAccessTokenByServer } from "@/utils/getCookieByServer";
 
 const UserList = async ({ keyword }) => {
-  console.log(keyword, "keyword");
   if (!keyword) {
     return null;
   }
@@ -21,7 +20,7 @@ const UserList = async ({ keyword }) => {
   const mock = [
     { id: 1, name: "송오리", nickname: "User nickname", action: "다소니" },
   ];
-  console.log(response, "response");
+
   return (
     <List>
       {mock.map((user) => (

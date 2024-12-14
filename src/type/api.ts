@@ -1,6 +1,6 @@
 interface RequestParams {
   url: string;
-  headers?: HeadersInit;
+  headers?: HeadersInit & { Authorization: string };
 }
 export interface GetRequestParams extends RequestParams {
   queryString?: string;

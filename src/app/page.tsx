@@ -1,5 +1,12 @@
-import { getAuthSession } from "@/utils/getAuthSession";
+import { getAccessTokenByServer } from "@/utils/getCookieByServer";
 import { redirect } from "next/navigation";
+
 export default async function Home() {
-  return <>session 확인 페이지</>;
+  const accessToken = await getAccessTokenByServer();
+  if (accessToken) {
+    redirect("/main/diary");
+  } else {
+    redirect("/onboarding");
+  }
+  return <></>;
 }

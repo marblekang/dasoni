@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import ImageUpload from "@/components/image-upload/ImageUpload";
 import RotatedImages from "@/components/common/image/RotatedImage";
 import { Button } from "@/components/ui/button";
 import Slides from "@/components/common/image/Slides";
-import { useParams, useSearchParams } from "next/navigation";
-import Link from "next/link";
+import { useParams } from "next/navigation";
 import LocationList from "@/components/location-search/LocationList";
 import { useQuery } from "@tanstack/react-query";
 import { getRequest } from "@/utils/requets";
@@ -24,7 +23,7 @@ const Page = () => {
     try {
       const accessToken = getAccessTokenByClient();
       const data = await getRequest<any>({
-        url: "/api/diary",
+        url: "/diary",
         headers: { Authorization: accessToken },
       });
       if (!data) {

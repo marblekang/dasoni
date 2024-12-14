@@ -87,15 +87,16 @@ const Page = () => {
       const accessToken = getAccessTokenByClient();
       const response = await postRequest({
         headers: { Authorization: accessToken },
-        url: "/api/diary",
+        url: "/diary",
         body: {
           title,
-          receiverID: "",
+          receiverID: "강병민",
           location,
           photos: photos.filter((val) => val).map((val) => val?.url),
         },
       });
       if (!response.ok) {
+        console.log(response, "response");
         throw new Error();
       }
     } catch (error) {
@@ -170,7 +171,7 @@ const Page = () => {
           closeModal={closeModal}
           photos={photos}
           setPhotos={setPhotos}
-          openFullscreen={openFullscreen}
+          openFullscreen={openModal}
         />
       )}
       <Slides
@@ -180,7 +181,7 @@ const Page = () => {
         photos={photos}
       />
       {showLocationSearch && (
-        <div className="absolute top-0 z-[10000] w-full h-full">
+        <div className="absolute top-0 z-50 w-full h-full">
           <LocationList
             setLocation={setLocation}
             setShowLocationSearch={setShowLocationSearch}

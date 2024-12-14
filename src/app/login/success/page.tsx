@@ -5,7 +5,7 @@ const LoginPage = async ({
 }: {
   searchParams: Promise<{ token: string }>;
 }) => {
-  const token = await { searchParams };
+  const { token } = await searchParams;
   return <ClientTokenSaver token={token} />;
 };
 export default LoginPage;

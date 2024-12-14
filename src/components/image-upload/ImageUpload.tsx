@@ -17,8 +17,6 @@ const AddPhotoPage = ({
   setPhotos: any;
   openFullscreen: (index: number) => void;
 }) => {
-  const [isFullscreen, setIsFullscreen] = useState(false); // 전체화면 상태
-  const [currentSlide, setCurrentSlide] = useState(0); // 선택된 사진의 인덱스
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleAddPhoto = (): void => {
@@ -36,7 +34,6 @@ const AddPhotoPage = ({
       const fileHash = `${files[0].name}-${files[0].size}-${files[0].lastModified}`;
       const existingHashes = photos.map((photo) => photo?.hash);
 
-      // 중복 확인
       if (existingHashes.includes(fileHash)) {
         return;
       }

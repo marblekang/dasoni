@@ -19,31 +19,42 @@ const Button = ({ children, href }) => {
 
 const DiaryList = async ({ keyword }) => {
   const accessToken = await getAccessTokenByServer();
-
-  const diaryResponse = await getRequest<{
+  const searchDiary = await getRequest<{
     message: string;
     data: { diary: any[] };
   }>({
-    url: keyword ? "/search/diary" : "/diary",
+    url: "/diary/search",
+    headers: { Authorization: accessToken ? accessToken : "" },
+    queryString: `search=${keyword}`,
+  });
+  const allDiary = await getRequest<{
+    message: string;
+    data: { diary: any[] };
+  }>({
+    url: "/diary",
     headers: {
       Authorization: accessToken ? accessToken : "",
     },
-    queryString: keyword || "",
   });
-
+  const getData = () => {
+    if (keyword) {
+      return "data" in searchDiary ? searchDiary.data.diary : [];
+    }
+    return "data" in allDiary ? allDiary.data.diary : [];
+  };
+  const data = getData();
   /* 1.여기서 알림도 요청 보내서 오늘 새로운거 있으면 text 바꿔주기
    2.캐싱 5분 
 */
+
+  console.log(allDiary, "allDiary");
 
   return (
     <List>
       <div className="py-4">
         <Button href="/diary/new">오늘 다소니에게 일기 보내기</Button>
       </div>
-      {(Array.isArray(diaryResponse)
-        ? diaryResponse
-        : diaryResponse.data.diary
-      ).map((val, index) => (
+      {data.map((val, index) => (
         <Link href={`/diary/${val.id}`} key={index}>
           <DiaryItem
             createdAt={val.createdAt}
