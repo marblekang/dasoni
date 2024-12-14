@@ -46,9 +46,12 @@ const HeaderSearchBar = () => {
           />
           <div className="flex gap-2 items-center">
             <div className="w-[24px] h-[24px] relative"></div>
-            <div className="w-[28px] h-[28px] relative">
-              <Image alt="profile" src="/assets/user-profile.png" fill />
-            </div>
+            <Link href="/settings">
+              <div className="w-[30px] h-[30px] relative">
+                {/* <Image alt="profile" src="/assets/user-profile.png" fill /> */}
+                <Image alt="profile" src="/assets/settings.png" fill />
+              </div>
+            </Link>
           </div>
           <div></div>
         </div>

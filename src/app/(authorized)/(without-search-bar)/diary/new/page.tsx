@@ -181,11 +181,13 @@ const Page = () => {
         photos={photos}
       />
       {showLocationSearch && (
-        <div className="absolute top-0 z-50 w-full h-full">
-          <LocationList
-            setLocation={setLocation}
-            setShowLocationSearch={setShowLocationSearch}
-          />
+        <div className="absolute top-0 z-50 w-full h-full bg-black">
+          <div className="absolute top-12 z-50 w-full h-calc(100% - 12px)">
+            <LocationList
+              setLocation={setLocation}
+              setShowLocationSearch={setShowLocationSearch}
+            />
+          </div>
         </div>
       )}
     </div>

@@ -1,6 +1,5 @@
 "use client";
 
-import { getRequest } from "@/utils/requets";
 import { ButtonWithAuth } from "../ButtonWithAuth";
 import Link from "next/link";
 

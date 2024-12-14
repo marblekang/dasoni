@@ -2,7 +2,7 @@ import React from "react";
 import CommonWrapper from "../CommonWrapper";
 import Image from "next/image";
 import Link from "next/link";
-import GoBack from "@/components/button/GoBack";
+import GoBack from "@/components/common/button/GoBack";
 
 const HeaderMain = () => {
   return (

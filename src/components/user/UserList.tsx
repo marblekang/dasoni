@@ -3,6 +3,7 @@ import List from "../common/list/List";
 import UserItem from "./UserItem";
 import { getRequest } from "@/utils/requets";
 import { getAccessTokenByServer } from "@/utils/getCookieByServer";
+import { Button } from "../diary/DiaryList";
 
 const UserList = async ({ keyword }) => {
   const accessToken = await getAccessTokenByServer();
@@ -24,10 +25,19 @@ const UserList = async ({ keyword }) => {
   return (
     <List>
       {!keyword && !Array.isArray(response) && (
-        <div className="w-full justify-center">유저를 검색해 주세요.</div>
+        <div className="w-full justify-center">
+          <div className="py-4">
+            <Button cursor="default">유저를 검색해 주세요.</Button>
+          </div>
+        </div>
       )}
       {keyword && !data && (
-        <div className="w-full justify-center">일치하는 유저가 없습니다.</div>
+        <div className="w-full justify-center">
+          {" "}
+          <div className="py-4">
+            <Button cursor="default">일치하는 유저가 없습니다.</Button>
+          </div>
+        </div>
       )}
       {keyword &&
         data &&

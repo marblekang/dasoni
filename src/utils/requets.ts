@@ -119,14 +119,20 @@ export const deleteRequest = async <T>({
   queryString,
   headers,
 }: DeleteRequestParams<T>) => {
-  const fullUrl = queryString ? `${url}?${queryString}` : url;
+  const isServer = typeof window === "undefined";
+  const prefixUrl = isServer ? process.env.NEXT_PUBLIC_SERVER_IP : "/request";
+  const endPoint = url.startsWith("/") ? url : `/${url}`;
+
   const options: RequestInit = {
     method: "DELETE",
     headers: { ...commonHeaders, ...headers },
     body: body ? JSON.stringify(body) : undefined,
   };
   try {
-    const response = await fetch(fullUrl, options);
+    const response = await fetch(
+      `${prefixUrl}${endPoint}${validateQueryString(queryString)}`,
+      options
+    );
     if (!response.ok) {
       throw new Error(`HTTP error ${response.status}`);
     }
