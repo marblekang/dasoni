@@ -18,7 +18,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/api/:path*",
+        source: "/request/:path*",
         destination: `${process.env.NEXT_PUBLIC_SERVER_IP}/:path*`, // 실제 백엔드 서버 주소
       },
     ];

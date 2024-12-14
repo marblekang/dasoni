@@ -7,7 +7,7 @@ export default function ClientTokenSaver({ token }) {
   useEffect(() => {
     if (token) {
       // 토큰을 API를 통해 서버 쿠키에 저장
-      fetch("/api/set-token", {
+      fetch("/request/set-token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
