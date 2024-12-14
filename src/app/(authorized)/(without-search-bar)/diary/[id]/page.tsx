@@ -43,7 +43,7 @@ const Page = () => {
     return data?.data?.diary.find((val) => val.id === id);
   }, [data]);
   useEffect(() => {}, [selectedData]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [photos, setPhotos] = useState<(PhotoType | null)[]>([
     null,
     null,
@@ -96,7 +96,7 @@ const Page = () => {
           <div className="w-full flex justify-between items-center font-medium">
             <input
               readOnly
-              value={selectedData?.title}
+              defaultValue={selectedData?.title}
               type="text"
               className="text-lg font-semibold z-10 appearance-none focus:outline-none border-none bg-transparent p-0 m-0 w-full transition-none"
               placeholder="일기 제목"
@@ -104,7 +104,7 @@ const Page = () => {
           </div>
           <textarea
             readOnly
-            value={selectedData?.message}
+            defaultValue={selectedData?.message}
             className="appearance-none focus:outline-none border-none resize-none w-full bg-transparent h-[400px]"
             placeholder="일기 내용"
           />
@@ -113,7 +113,7 @@ const Page = () => {
 
         <div className="px-4 flex justify-end gap-4">
           <Button className="z-10 inline-block p-1 bg-[#FF848F66] hover:bg-[#f7556366] cursor-pointer rounded-[5px] text-white">
-            {today}
+            {selectedData?.createdAt ? today : "YYYY.MM.DD"}
           </Button>
 
           {selectedData?.location && (

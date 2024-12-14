@@ -6,11 +6,24 @@ import { getRequest } from "@/utils/requets";
 
 import { getAccessTokenByServer } from "@/utils/getCookieByServer";
 
-const Button = ({ children, href }) => {
+export const Button = ({
+  children,
+  href,
+  cursor,
+}: {
+  children;
+  href?;
+  cursor?: "pointer" | "default";
+}) => {
+  const cursorStyle = cursor
+    ? cursor === "default"
+      ? "cursor-default"
+      : ""
+    : "";
   return (
     <Link
-      href={href}
-      className="w-full h-20 flex items-center justify-center border-[3px] border-[#FFACB4B2] rounded-[37px] bg-white "
+      href={href ?? ""}
+      className={`w-full h-20 flex items-center justify-center border-[3px] border-[#FFACB4B2] rounded-[37px] bg-white ${cursorStyle}`}
     >
       <span className="text-[#FF3668] font-semibold">{children}</span>
     </Link>
@@ -27,6 +40,7 @@ const DiaryList = async ({ keyword }) => {
     headers: { Authorization: accessToken ? accessToken : "" },
     queryString: `search=${keyword}`,
   });
+
   const allDiary = await getRequest<{
     message: string;
     data: { diary: any[] };
@@ -36,25 +50,27 @@ const DiaryList = async ({ keyword }) => {
       Authorization: accessToken ? accessToken : "",
     },
   });
-  const getData = () => {
+
+  // const alert = await getRequest<>
+
+  const getDiaryData = () => {
     if (keyword) {
       return "data" in searchDiary ? searchDiary.data.diary : [];
     }
     return "data" in allDiary ? allDiary.data.diary : [];
   };
-  const data = getData();
+  const diaryData = getDiaryData();
   /* 1.여기서 알림도 요청 보내서 오늘 새로운거 있으면 text 바꿔주기
    2.캐싱 5분 
-*/
 
-  console.log(allDiary, "allDiary");
+*/
 
   return (
     <List>
       <div className="py-4">
         <Button href="/diary/new">오늘 다소니에게 일기 보내기</Button>
       </div>
-      {data.map((val, index) => (
+      {diaryData.map((val, index) => (
         <Link href={`/diary/${val.id}`} key={index}>
           <DiaryItem
             createdAt={val.createdAt}

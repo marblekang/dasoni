@@ -1,8 +1,14 @@
 import { LoginButton } from "@/components/auth/login/LoginButton";
 import MainNote from "@/components/onboarding/MainNote";
+import { getAccessTokenByServer } from "@/utils/getCookieByServer";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
-const Onboarding = () => {
+const Onboarding = async () => {
+  const token = await getAccessTokenByServer();
+  if (token) {
+    redirect("/main/diary");
+  }
   return (
     <div className="w-full flex flex-col items-center  justify-between  h-full  bg-[linear-gradient(184deg,rgba(153,147,147,0)_-13.43%,rgba(255,240,240,0.3)_-13.43%)] z-10 relative">
       <MainNote />
