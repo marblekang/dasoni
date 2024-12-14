@@ -26,7 +26,7 @@ export const getRequest = async <T>({
     headers: { ...commonHeaders, ...headers },
   };
   const isServer = typeof window === "undefined";
-  const prefixUrl = isServer ? process.env.SERVER_IP : "/api";
+  const prefixUrl = isServer ? process.env.NEXT_PUBLIC_SERVER_IP : "/api";
   const endPoint = url.startsWith("/") ? url : `/${url}`;
 
   try {
@@ -63,7 +63,7 @@ const mutateRequest = async <T>({
 }: MutateRequestParams<T>) => {
   try {
     const isServer = typeof window === "undefined";
-    const prefixUrl = isServer ? process.env.SERVER_IP : "/api";
+    const prefixUrl = isServer ? process.env.NEXT_PUBLIC_SERVER_IP : "/api";
     const endPoint = url.startsWith("/") ? url : `/${url}`;
 
     const response = await fetch(`${prefixUrl}${endPoint}`, {
