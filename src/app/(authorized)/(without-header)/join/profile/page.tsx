@@ -2,8 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Page = ({ searchParams }: { searchParams: { nickname: string } }) => {
-  const nickname = searchParams.nickname;
+const Page = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ nickname: string }>;
+}) => {
+  const { nickname } = await searchParams;
   return (
     <div className="flex flex-col items-center h-full bg-[#FFF8F8] px-4 pt-20 ">
       {/* 카드 섹션 */}

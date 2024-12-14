@@ -19,8 +19,7 @@ export const getRequest = async <T>({
   url,
   headers,
   queryString,
-  needServerIP = true,
-}: GetRequestParams): Promise<T> => {
+}: GetRequestParams): Promise<T | []> => {
   const options: RequestInit = {
     method: "GET",
     headers: { ...commonHeaders, ...headers },

@@ -29,7 +29,7 @@ const HeaderSearchBar = () => {
     }
   };
   return (
-    <CommonWrapper bg="white">
+    <CommonWrapper>
       <div className="flex gap-4 h-full w-full items-center px-4 py-1">
         <Link href="/">
           <div className="w-[24px] h-[30px] relative">

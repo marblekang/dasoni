@@ -34,12 +34,16 @@ const DiaryList = async ({ keyword }) => {
   /* 1.여기서 알림도 요청 보내서 오늘 새로운거 있으면 text 바꿔주기
    2.캐싱 5분 
 */
+
   return (
     <List>
       <div className="py-4">
         <Button href="/diary/new">오늘 다소니에게 일기 보내기</Button>
       </div>
-      {diaryResponse.data?.diary.map((val, index) => (
+      {(Array.isArray(diaryResponse)
+        ? diaryResponse
+        : diaryResponse.data.diary
+      ).map((val, index) => (
         <Link href={`/diary/${val.id}`} key={index}>
           <DiaryItem
             createdAt={val.createdAt}

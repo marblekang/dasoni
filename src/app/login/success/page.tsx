@@ -1,8 +1,11 @@
-import { cookies } from "next/headers";
 import ClientTokenSaver from "./ClientTokenServer";
 
-const LoginPage = async ({ searchParams }) => {
-  const token = searchParams.token;
+const LoginPage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ token: string }>;
+}) => {
+  const token = await { searchParams };
   return <ClientTokenSaver token={token} />;
 };
 export default LoginPage;

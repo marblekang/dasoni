@@ -1,13 +1,11 @@
 import React, { ReactNode } from "react";
 interface Props {
   children: ReactNode;
-  bg: string;
 }
-const CommonWrapper = ({ children, bg }: Props) => {
-  const bgClass = bg === "gray" ? "bg-gray-300" : "bg-white";
+const CommonWrapper = ({ children }: Props) => {
   return (
     <header
-      className={`h-16 flex items-center ${bgClass} sticky top-0 w-full z-10`}
+      className={`h-16 flex items-center bg-gray-200 sticky top-0 w-full z-10`}
     >
       {children}
     </header>
