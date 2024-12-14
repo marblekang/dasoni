@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ImageUpload from "@/components/image-upload/ImageUpload";
 import RotatedImages from "@/components/common/image/RotatedImage";
 import { Button } from "@/components/ui/button";
@@ -42,7 +42,7 @@ const Page = () => {
     }
     return data?.data?.diary.find((val) => val.id === id);
   }, [data]);
-
+  useEffect(() => {}, [selectedData]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [photos, setPhotos] = useState<(PhotoType | null)[]>([
     null,

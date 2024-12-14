@@ -19,7 +19,7 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: "http://3.35.0.57:3000/:path*", // 실제 백엔드 서버 주소
+        destination: `${process.env.NEXT_PUBLIC_SERVER_IP}/:path*`, // 실제 백엔드 서버 주소
       },
     ];
   },
