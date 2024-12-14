@@ -6,17 +6,15 @@ import RotatedImages from "@/components/common/image/RotatedImage";
 import { Button } from "@/components/ui/button";
 import Slides from "@/components/common/image/Slides";
 import { useParams } from "next/navigation";
-import LocationList from "@/components/location-search/LocationList";
 import { useQuery } from "@tanstack/react-query";
 import { getRequest } from "@/utils/requets";
 import { getAccessTokenByClient } from "@/utils/getCookieByClient";
+import Link from "next/link";
 interface PhotoType {
   url: string;
   hash: string;
 }
-interface ChildRef {
-  handleRotatedImageClick: () => void; // 하위 컴포넌트에서 노출되는 메서드의 타입
-}
+
 const Page = () => {
   const { id } = useParams();
   const getData = async () => {
@@ -54,48 +52,17 @@ const Page = () => {
   ]); // 항상 4개의 슬롯 유지
   const [isFullscreen, setIsFullscreen] = useState(false); // 전체화면 상태
   const [currentSlide, setCurrentSlide] = useState(0); // 선택된 사진의 인덱스
-  const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>("");
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false); // 애니메이션 활성화
-  };
 
   const openFullscreen = (index: number) => {
     setCurrentSlide(index); // 현재 슬라이드 설정
     setIsFullscreen(true);
   };
 
-  const getNoSpacesValue = (inputValue: string) =>
-    inputValue.replace(/\s+/g, "");
   const closeFullscreen = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation(); // Swiper 이벤트 전파 방지
     setIsFullscreen(false);
   };
-  const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = getNoSpacesValue(e.target.value);
-    setTitle((prev) => {
-      if (value.length > 15) {
-        alert("제목은 공백 제외 15자 이내로 입력해야 합니다.");
-        return prev;
-      }
-      return e.target.value;
-    });
-  };
 
-  const onChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContent((prev) => {
-      if (e.target.value.length > 1000) {
-        alert("일기는 공백 포함 100자 이상 1000자 이하로 입력해야 합니다.");
-        return prev;
-      }
-
-      return e.target.value;
-    });
-  };
   const formattedDate = () => {
     const date = new Date(selectedData?.createdAt);
     const year = date.getFullYear();
@@ -107,8 +74,7 @@ const Page = () => {
 
   // 사용 예시
   const today = formattedDate();
-  const [showLocationSearch, setShowLocationSearch] = useState<boolean>(false);
-  const [location, setLocation] = useState<string>("");
+
   return (
     <div className="relative w-full flex flex-col gap-4 h-full overflow-hidden bg-[#FAF9F9]">
       <div>
@@ -121,7 +87,7 @@ const Page = () => {
                   : null
                 : null
             }
-            onClick={() => {}}
+            onClick={() => openFullscreen(0)}
           />
         </div>
 
@@ -151,48 +117,32 @@ const Page = () => {
           </Button>
 
           {selectedData?.location && (
-            <Button
-              className="z-10 inline-block p-1 bg-[#FF848F66] hover:bg-[#f7556366] cursor-pointer rounded-[5px] text-white"
-              onClick={() => {}}
-            >
+            <Button className="z-10 inline-block p-1 bg-[#FF848F66] hover:bg-[#f7556366] cursor-pointer rounded-[5px] text-white">
               {selectedData?.location}
             </Button>
           )}
         </div>
         <div className="mt-4 flex justify-center">
-          <Button
-            variant="outline"
-            className="z-10 w-3/5 py-7 rounded-full bg-[#FF3668] hover:bg-[#eb3f6a] text-white text-sm font-medium transition-colors duration-200  hover:text-white border-none"
-            onClick={() => {
-              "메시지전송";
-            }}
-          >
-            확인
-          </Button>
+          <Link href="/main/diary" className="w-1/2">
+            <Button
+              variant="outline"
+              className="z-10 w-full py-7 rounded-full bg-[#FF3668] hover:bg-[#eb3f6a] text-white text-sm font-medium transition-colors duration-200  hover:text-white border-none"
+              onClick={() => {
+                "메시지전송";
+              }}
+            >
+              확인
+            </Button>
+          </Link>
         </div>
       </div>
-      {isModalOpen && (
-        <ImageUpload
-          closeModal={closeModal}
-          photos={photos}
-          setPhotos={setPhotos}
-          openFullscreen={openFullscreen}
-        />
-      )}
+
       <Slides
         closeFullscreen={closeFullscreen}
         currentSlide={currentSlide}
         isFullscreen={isFullscreen}
         photos={photos}
       />
-      {showLocationSearch && (
-        <div className="absolute top-0 z-[10000] w-full h-full">
-          <LocationList
-            setLocation={setLocation}
-            setShowLocationSearch={setShowLocationSearch}
-          />
-        </div>
-      )}
     </div>
   );
 };

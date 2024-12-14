@@ -18,6 +18,7 @@ const Page = () => {
       body: { name: nickname },
       headers: { Authorization: accessToken },
     });
+    console.log(data);
     if (data) {
       setIsSuccess(true);
     }
@@ -55,7 +56,7 @@ const Page = () => {
         {/* {error && <p className="text-red-500 text-sm mt-2">{error}</p>} */}
       </div>
       <Link
-        href={isSuccess ? "/join/profile" : ""}
+        href={isSuccess ? `/join/profile?nickname=${nickname}` : ""}
         className={`w-full py-4 ${
           isSuccess ? "bg-[#FF3668]" : "bg-[#FFF0F1]"
         } ${

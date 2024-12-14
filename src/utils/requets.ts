@@ -25,12 +25,10 @@ export const getRequest = async <T>({
     method: "GET",
     headers: { ...commonHeaders, ...headers },
   };
-  let count = 0;
   const isServer = typeof window === "undefined";
   const prefixUrl = isServer ? process.env.SERVER_IP : "/api";
   const endPoint = url.startsWith("/") ? url : `/${url}`;
-  console.log(prefixUrl, "prefixUrl");
-  console.log(`${prefixUrl}${endPoint}`, "asjhdkashjkd");
+
   try {
     const response = await fetch(
       `${prefixUrl}${endPoint}${validateQueryString(queryString)}`,
@@ -39,6 +37,14 @@ export const getRequest = async <T>({
 
     if (!response.ok) {
       if (response.status === 401) {
+        const refreshResponse = await fetch(
+          `${prefixUrl}/auth/refresh`,
+          options
+        );
+        if (!refreshResponse.ok) {
+          console.log(refreshResponse);
+          console.log(refreshResponse.status, refreshResponse.statusText);
+        }
       }
     }
     const data: T = await response.json();

@@ -34,7 +34,7 @@ bg-[#FFF] w-64 h-80 rounded-2xl shadow-[0px_37.228px_29.941px_-3.168px_rgba(28,1
 
       {/* 버튼 */}
       <Link
-        href={"/search"}
+        href={"/main/user"}
         className="relative w-[84px] h-[90px] cursor-pointer"
       >
         <Image alt="join-complete" src={"/assets/join-complete.png"} fill />

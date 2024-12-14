@@ -1,6 +1,20 @@
+"use client";
+import { getAccessTokenByClient } from "@/utils/getCookieByClient";
+import { postRequest } from "@/utils/requets";
 import React from "react";
 
 const UserItem = ({ user }) => {
+  const followUser = async () => {
+    const token = getAccessTokenByClient();
+    const response = await postRequest({
+      url: "/friend",
+      headers: { Authorization: token ?? "" },
+      body: { receiverId: user.id },
+    });
+    if (response.ok) {
+      alert(`${user.id}님께 친구요청을 보냈습니다.`);
+    }
+  };
   return (
     <div
       key={user.id}
@@ -17,6 +31,7 @@ const UserItem = ({ user }) => {
 
       {/* Action Button */}
       <button
+        onClick={followUser}
         className={`px-4 py-2 text-sm font-medium rounded-md ${
           user.action === "다소니"
             ? "bg-[#FF5174] text-white"
