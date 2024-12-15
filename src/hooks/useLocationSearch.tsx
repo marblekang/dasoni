@@ -7,11 +7,17 @@ export interface LocationSearchProps {
 }
 export const useLocationSearch = ({ searchKeyword }: LocationSearchProps) => {
   const { x, y, error } = useGeolocation();
+  const getStaleTime = (res) => {
+    if (!res) {
+      return 0;
+    } else {
+      return 1000 * 60 * 15;
+    }
+  };
   const { data: locationData, isFetching } = useQuery({
-    queryKey: ["searchKeyword", { searchKeyword }],
+    queryKey: ["searchKeyword", { searchKeyword: searchKeyword || "" }],
     queryFn: async () => {
       try {
-        if (!searchKeyword) return [];
         const queryString = error
           ? `query=${searchKeyword}`
           : `query=${searchKeyword}&x=${x}&y=${y}`;
@@ -26,7 +32,8 @@ export const useLocationSearch = ({ searchKeyword }: LocationSearchProps) => {
     },
     enabled: searchKeyword !== "",
     placeholderData: keepPreviousData, // 한번 검색한 이후로는 검색어가 없어도 마지막으로 검색한 키워드의 결과를 출력하도록 하기 위해 사용.
-    staleTime: 1000 * 60 * 15,
+    staleTime: (res) => getStaleTime(res),
   });
+
   return { locationData, isFetching };
 };

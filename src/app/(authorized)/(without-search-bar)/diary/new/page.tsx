@@ -108,10 +108,7 @@ const Page = () => {
     <div className="relative w-full flex flex-col gap-4 h-full overflow-hidden bg-[#FAF9F9]">
       <div>
         <div className="w-fit h-fit absolute  top-0 right-3 z-0">
-          <RotatedImages
-            url={photos[0]?.url ?? null}
-            onClick={() => openFullscreen(0)}
-          />
+          <RotatedImages url={photos[0]?.url ?? null} onClick={openModal} />
         </div>
 
         <div className="mt-4 flex justify-center">
@@ -125,7 +122,7 @@ const Page = () => {
             </Button>
           )}
         </div>
-        <div className="p-4 flex flex-col gap-4 z-10">
+        <div className="p-4 flex flex-col gap-4 z-10 text-black">
           <div className="w-full flex justify-between items-center font-medium">
             <input
               value={title}
@@ -171,7 +168,7 @@ const Page = () => {
           closeModal={closeModal}
           photos={photos}
           setPhotos={setPhotos}
-          openFullscreen={openModal}
+          openFullscreen={openFullscreen}
         />
       )}
       <Slides
@@ -181,13 +178,11 @@ const Page = () => {
         photos={photos}
       />
       {showLocationSearch && (
-        <div className="absolute top-0 z-50 w-full h-full bg-black">
-          <div className="absolute top-12 z-50 w-full h-calc(100% - 12px)">
-            <LocationList
-              setLocation={setLocation}
-              setShowLocationSearch={setShowLocationSearch}
-            />
-          </div>
+        <div className="absolute top-0 z-50 w-full h-full">
+          <LocationList
+            setLocation={setLocation}
+            setShowLocationSearch={setShowLocationSearch}
+          />
         </div>
       )}
     </div>
