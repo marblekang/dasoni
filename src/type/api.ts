@@ -16,3 +16,8 @@ export type DeleteRequestParams<T> = RequestParams & {
   queryString?: string;
   body?: T;
 };
+
+export interface ResponseTemplate<T> {
+  message: string;
+  data: T;
+}

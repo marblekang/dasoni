@@ -5,6 +5,7 @@ import List from "../common/list/List";
 import { getRequest } from "@/utils/requets";
 
 import { getAccessTokenByServer } from "@/utils/getCookieByServer";
+import { ResponseTemplate } from "@/type";
 
 export const Button = ({
   children,
@@ -50,8 +51,18 @@ const DiaryList = async ({ keyword }) => {
       Authorization: accessToken ? accessToken : "",
     },
   });
-
-  // const alert = await getRequest<>
+  interface Alert {
+    notification: {
+      id: string;
+      title: string;
+      description: string;
+      type: string;
+      relatedID: string;
+      createdAt: string;
+      reatAt: null;
+    };
+  }
+  // const alert = await getRequest<ResponseTemplate<Alert>>();
 
   const getDiaryData = () => {
     if (keyword) {
